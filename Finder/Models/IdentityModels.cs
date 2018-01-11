@@ -32,7 +32,7 @@ namespace Finder.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("FinderDB", throwIfV1Schema: false)
+            : base("Test", throwIfV1Schema: false)
         {
             Database.SetInitializer<ApplicationDbContext>(new UniDBInitializer<ApplicationDbContext>());
         }

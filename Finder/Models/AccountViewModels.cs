@@ -65,6 +65,11 @@ namespace Finder.Models
     public class RegisterViewModel
     {
         [Required]
+        [StringLength(256)]
+        public string UserName { get; set; }
+
+
+        [Required]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
