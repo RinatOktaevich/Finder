@@ -1,10 +1,12 @@
 namespace Finder.Migrations
 {
     using Microsoft.AspNet.Identity.EntityFramework;
+    using Models;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
+    using System.Web;
 
     internal sealed class Configuration : DbMigrationsConfiguration<Finder.Models.ApplicationDbContext>
     {
@@ -22,6 +24,18 @@ namespace Finder.Migrations
 
             context.Roles.Add(new IdentityRole("Admin"));
             context.Roles.Add(new IdentityRole("Client"));
+
+           
+            
+
+            //ApplicationUser user = new ApplicationUser() { Email="Rinat@mail.ru", UserName="Rinat", PasswordHash="shdhauawmnuzyc" };
+
+            //var cates= context.Categories.ToList();
+
+            //user.Categories.Add(cates[0]);
+
+
+            //context.Users.Add();
 
 
 

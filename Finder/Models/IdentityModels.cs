@@ -11,7 +11,7 @@ namespace Finder.Models
     public class ApplicationUser : IdentityUser
     {
 
-
+        
         public ICollection<Category> Categories { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
@@ -32,7 +32,7 @@ namespace Finder.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("Test", throwIfV1Schema: false)
+            : base("DefaultConnection", throwIfV1Schema: false)
         {
             Database.SetInitializer<ApplicationDbContext>(new UniDBInitializer<ApplicationDbContext>());
         }

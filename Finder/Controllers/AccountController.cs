@@ -23,7 +23,7 @@ namespace Finder.Controllers
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
@@ -35,9 +35,9 @@ namespace Finder.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -52,6 +52,21 @@ namespace Finder.Controllers
                 _userManager = value;
             }
         }
+
+        public ActionResult GetUserInfoByID(string ID)
+        {
+            ApplicationUser user=UserManager.FindById(ID);
+           
+            
+            if (user== null)
+            {
+                return Json("This user doesn`t exist" , JsonRequestBehavior.AllowGet);
+            }
+
+            
+            return Json(user,JsonRequestBehavior.AllowGet);
+        }
+
 
         //
         // GET: /Account/Login
@@ -160,6 +175,7 @@ namespace Finder.Controllers
             {
                 var user = new ApplicationUser { UserName = model.UserName, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
+                UserManager.AddToRole(user.Id, "Client");
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
